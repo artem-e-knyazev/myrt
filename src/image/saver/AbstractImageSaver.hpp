@@ -2,9 +2,9 @@
 #define MYRT_ABSTRACT_IMAGE_SAVER_HPP
 
 #include "myrt_math/color.hpp"
-#include "ImageBuffer.hpp"
+#include "image/ImageBuffer.hpp"
 
-namespace Myrt::Image {
+namespace Myrt::Image::Saver {
 
 enum class ImageType { PPM };
 
@@ -50,7 +50,7 @@ private:
     std::string mPath;
 };
 
-} // namespace Myrt::Image
+} // namespace Myrt::Image::Saver
 
 #endif
 

@@ -2,9 +2,9 @@
 #define MYRT_PPM_IMAGE_SAVER_HPP
 
 #include <fstream>
-#include "AbstractImageSaver.hpp"
+#include "image/saver/AbstractImageSaver.hpp"
 
-namespace Myrt::Image {
+namespace Myrt::Image::Saver {
 
 class PPMImageSaver: public AbstractImageSaver {
 protected:
@@ -22,7 +22,7 @@ protected:
     }
 };
 
-} // namespace Myrt::Image
+} // namespace Myrt::Image::Saver
 
 #endif
 

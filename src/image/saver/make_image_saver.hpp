@@ -4,10 +4,10 @@
 #include <exception>
 #include <memory>
 
-#include "AbstractImageSaver.hpp"
-#include "PPMImageSaver.hpp"
+#include "image/saver/AbstractImageSaver.hpp"
+#include "image/saver/PPMImageSaver.hpp"
 
-namespace Myrt::Image {
+namespace Myrt::Image::Saver {
 
 ImageSaverUPtr make_image_saver(ImageType type) {
     switch (type) {
@@ -20,7 +20,7 @@ ImageSaverUPtr make_image_saver(ImageType type) {
     }
 }
 
-} // namespace Myrt::Image
+} // namespace Myrt::Image::Saver
 
 #endif
 
