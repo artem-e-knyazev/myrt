@@ -1,0 +1,3 @@
+[submodule "submodules/myrt_math"]
+	path = submodules/myrt_math
+	url = https://github.com/artem-e-knyazev/myrt_math.git
