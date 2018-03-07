@@ -2,13 +2,14 @@
 #define MYRT_ABSTRACT_IMAGE_SAVER_HPP
 
 #include "myrt_math/color.hpp"
-#include "image/ImageBuffer.hpp"
-#include "image/saver/ImageType.hpp"
 #include "options/Options.hpp"
+#include "image/buffer/ImageBuffer.hpp"
+#include "image/saver/ImageType.hpp"
 
 namespace Myrt::Image::Saver {
 
 using Myrt::Options::ImageSaverOptionsPtr;
+using Myrt::Image::Buffer::ImageBufferPtr;
 
 class AbstractImageSaver;
 using ImageSaverPtr = std::shared_ptr<AbstractImageSaver>;
