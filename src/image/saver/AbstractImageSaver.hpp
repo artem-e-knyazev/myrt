@@ -3,13 +3,15 @@
 
 #include "myrt_math/color.hpp"
 #include "image/ImageBuffer.hpp"
+#include "image/saver/ImageType.hpp"
+#include "options/Options.hpp"
 
 namespace Myrt::Image::Saver {
 
-enum class ImageType { PPM };
+using Myrt::Options::ImageSaverOptionsPtr;
 
 class AbstractImageSaver;
-using ImageSaverUPtr = std::unique_ptr<AbstractImageSaver>;
+using ImageSaverPtr = std::shared_ptr<AbstractImageSaver>;
 
 class AbstractImageSaver {
 public:
@@ -17,14 +19,11 @@ public:
         doSave();
     }
 
-    void setImageBuffer(ImageBufferPtr pImageBuffer)
-    { mpImageBuffer = pImageBuffer; }
-
-    void setGamma(float g)
-    { mGamma = g; }
-
-    void setPath(std::string path)
-    { mPath = std::move(path); }
+    virtual void init(ImageSaverOptionsPtr pOptions, ImageBufferPtr pImageBuffer) {
+        mpImageBuffer = pImageBuffer;
+        mGamma = pOptions->getGamma();
+        mPath = pOptions->getOutputPath();
+    }
 
     virtual ~AbstractImageSaver() = default;
 

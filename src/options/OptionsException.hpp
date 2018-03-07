@@ -17,10 +17,10 @@ namespace {
     }
 }
 
-class MyrtOptionsException: public std::exception
+class OptionsException: public std::exception
 {};
 
-class MyrtOptionsHelpException: public MyrtOptionsException {
+class OptionsHelpException: public OptionsException {
 private:
     static std::string mWhat;
 public:
@@ -31,13 +31,13 @@ public:
     }
 };
 
-std::string MyrtOptionsHelpException::mWhat = "";
+std::string OptionsHelpException::mWhat = "";
 
-class MyrtOptionsOptionNotValidException: public MyrtOptionsException {
+class OptionsOptionNotValidException: public OptionsException {
 private:
     std::string mWhat;
 public:
-    MyrtOptionsOptionNotValidException(std::string option) {
+    OptionsOptionNotValidException(std::string option) {
         mWhat = option + " option is not valid or not defined";
     }
 

@@ -4,8 +4,11 @@
 #include <vector>
 
 #include "myrt_math/color.hpp"
+#include "options/Options.hpp"
 
 namespace Myrt::Image {
+
+using Myrt::Options::ImageBufferOptionsPtr;
 
 class ImageBuffer;
 using ImageBufferPtr = std::shared_ptr<ImageBuffer>;
@@ -16,11 +19,13 @@ private:
     unsigned int mWidth;
     unsigned int mHeight;
 
-    ImageBuffer(unsigned int width, unsigned int height)
-        : mWidth(width), mHeight(height)
+    ImageBuffer(ImageBufferOptionsPtr pImageBufferOptions)
+        : mWidth(pImageBufferOptions->getImageWidth()),
+          mHeight(pImageBufferOptions->getImageHeight())
     {
         mBuffer.resize(mWidth*mHeight);
     }
+
 public:
     void setPixelColor(unsigned int x, unsigned int y, color& c) {
         mBuffer[x + y * mWidth] = c;
@@ -36,8 +41,14 @@ public:
     unsigned int getHeight() const
     { return mHeight; }
 
-    friend class OutputImage;
+    friend ImageBufferPtr make_image_buffer(ImageBufferOptionsPtr);
 };
+
+ImageBufferPtr make_image_buffer(ImageBufferOptionsPtr pImageBufferOptions) {
+    ImageBufferPtr ptr;
+    ptr.reset(new ImageBuffer(pImageBufferOptions));
+    return ptr;
+}
 
 } // namespace Myrt::Image
 

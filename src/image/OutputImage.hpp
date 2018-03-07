@@ -8,9 +8,10 @@
 
 namespace Myrt::Image {
 
-using Myrt::Image::Saver::ImageType;
-using Myrt::Image::Saver::ImageSaverUPtr;
+using Myrt::Image::Saver::ImageSaverPtr;
 using Myrt::Image::Saver::make_image_saver;
+using Myrt::Options::OptionsPtr;
+using Myrt::Options::OutputImageOptionsPtr;
 
 class OutputImage;
 using OutputImagePtr = std::shared_ptr<OutputImage>;
@@ -18,20 +19,12 @@ using OutputImagePtr = std::shared_ptr<OutputImage>;
 class OutputImage {
 private:
     ImageBufferPtr mpImageBuffer;
-    ImageSaverUPtr mpImageSaver;
+    ImageSaverPtr mpImageSaver;
 
-    OutputImage(unsigned int width,
-                unsigned int height,
-                std::string path,
-                ImageType type,
-                float gamma)
-        : mpImageBuffer(new ImageBuffer(width, height))
-    {
-        mpImageSaver = make_image_saver(type);
-        mpImageSaver->setImageBuffer(mpImageBuffer);
-        mpImageSaver->setPath(path);
-        mpImageSaver->setGamma(gamma);
-    }
+    OutputImage(OutputImageOptionsPtr pOutputImageOptions)
+        : mpImageBuffer(make_image_buffer(pOutputImageOptions->getImageBufferOptions())),
+          mpImageSaver(make_image_saver(pOutputImageOptions->getImageSaverOptions(), mpImageBuffer))
+    {}
 
 public:
     void setPixelColor(unsigned int x, unsigned int y, color c) {
@@ -42,19 +35,12 @@ public:
         mpImageSaver->save();
     }
 
-    friend OutputImagePtr
-    make_output_image(unsigned int, unsigned int,
-            std::string, ImageType, float);
+    friend OutputImagePtr make_output_image(OptionsPtr);
 };
 
-OutputImagePtr make_output_image(unsigned int width,
-                                 unsigned int height,
-                                 std::string path,
-                                 ImageType type,
-                                 float gamma = 2.f)
-{
+OutputImagePtr make_output_image(OptionsPtr pOptions) {
     OutputImagePtr ptr;
-    ptr.reset(new OutputImage(width, height, path, type, gamma));
+    ptr.reset(new OutputImage(pOptions->getOutputImageOptions()));
     return ptr;
 }
 
