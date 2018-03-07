@@ -1,9 +1,11 @@
 #ifndef MYRT_OPTIONS_EXCEPTION_HPP
 #define MYRT_OPTIONS_EXCEPTION_HPP
 
+#include "exception/MyrtException.hpp"
+
 namespace Myrt::Exception {
 
-class OptionsException: public std::exception
+class OptionsException: public MyrtException
 {};
 
 class OptionsHelpException: public OptionsException
