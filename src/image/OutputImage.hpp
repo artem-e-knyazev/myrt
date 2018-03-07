@@ -32,6 +32,9 @@ public:
         mpImageBuffer->setPixelColor(x, y, c);
     }
 
+    float  getAspectRatio() const
+    { return float(mpImageBuffer->getWidth()) / float(mpImageBuffer->getHeight()); }
+
     void save() {
         mpImageSaver->save();
     }
