@@ -6,7 +6,7 @@
 #include "myrt_math/color.hpp"
 #include "options/Options.hpp"
 
-namespace Myrt::Image {
+namespace Myrt::Image::Buffer {
 
 using Myrt::Options::ImageBufferOptionsPtr;
 
@@ -44,13 +44,7 @@ public:
     friend ImageBufferPtr make_image_buffer(ImageBufferOptionsPtr);
 };
 
-ImageBufferPtr make_image_buffer(ImageBufferOptionsPtr pImageBufferOptions) {
-    ImageBufferPtr ptr;
-    ptr.reset(new ImageBuffer(pImageBufferOptions));
-    return ptr;
-}
-
-} // namespace Myrt::Image
+} // namespace Myrt::Image::Buffer
 
 #endif
 

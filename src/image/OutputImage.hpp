@@ -1,17 +1,18 @@
 #ifndef MYRT_OUTPUT_IMAGE_HPP
 #define MYRT_OUTPUT_IMAGE_HPP
 
-#include <memory>
-
-#include "image/ImageBuffer.hpp"
+#include "options/Options.hpp"
+#include "image/buffer/make_image_buffer.hpp"
 #include "image/saver/make_image_saver.hpp"
 
 namespace Myrt::Image {
 
-using Myrt::Image::Saver::ImageSaverPtr;
-using Myrt::Image::Saver::make_image_saver;
 using Myrt::Options::OptionsPtr;
 using Myrt::Options::OutputImageOptionsPtr;
+using Myrt::Image::Saver::ImageSaverPtr;
+using Myrt::Image::Saver::make_image_saver;
+using Myrt::Image::Buffer::ImageBufferPtr;
+using Myrt::Image::Buffer::make_image_buffer;
 
 class OutputImage;
 using OutputImagePtr = std::shared_ptr<OutputImage>;
@@ -37,12 +38,6 @@ public:
 
     friend OutputImagePtr make_output_image(OptionsPtr);
 };
-
-OutputImagePtr make_output_image(OptionsPtr pOptions) {
-    OutputImagePtr ptr;
-    ptr.reset(new OutputImage(pOptions->getOutputImageOptions()));
-    return ptr;
-}
 
 } // namespace Myrt::Image
 
