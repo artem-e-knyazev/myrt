@@ -1,7 +1,11 @@
 #ifndef MYRT_OBJECT_ABSTRACT_OBJECT
 #define MYRT_OBJECT_ABSTRACT_OBJECT
 
+#include "hit_record/HitRecord.hpp"
+
 namespace Myrt::Object {
+
+using Myrt::HitRecord::HitRecord;
 
 class AbstractObject;
 using ObjectPtr = std::shared_ptr<AbstractObject>;

@@ -32,7 +32,13 @@ public:
         mpImageBuffer->setPixelColor(x, y, c);
     }
 
-    float  getAspectRatio() const
+    unsigned int getWidth() const
+    { return mpImageBuffer->getWidth(); }
+
+    unsigned int getHeight() const
+    { return mpImageBuffer->getHeight(); }
+
+    float getAspectRatio() const
     { return float(mpImageBuffer->getWidth()) / float(mpImageBuffer->getHeight()); }
 
     void save() {

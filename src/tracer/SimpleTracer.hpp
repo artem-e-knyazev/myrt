@@ -2,8 +2,11 @@
 #define MYRT_TRACER_SIMPLE_TRACER_HPP
 
 #include "tracer/AbstractTracer.hpp"
+#include "hit_record/HitRecord.hpp"
 
 namespace Myrt::Tracer {
+
+using Myrt::HitRecord::HitRecord;
 
 class SimpleTracer: public AbstractTracer {
 public:

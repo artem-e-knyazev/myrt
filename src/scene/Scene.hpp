@@ -3,8 +3,13 @@
 
 #include "object/AbstractObject.hpp"
 #include "camera/AbstractCamera.hpp"
+#include "hit_record/HitRecord.hpp"
 
 namespace Myrt::Scene {
+
+using Myrt::Object::ObjectPtr;
+using Myrt::Camera::CameraPtr;
+using Myrt::HitRecord::HitRecord;
 
 class Scene;
 using ScenePtr = std::shared_ptr<Scene>;
@@ -39,6 +44,8 @@ public:
         }
         return isHit;
     }
+
+    friend ScenePtr make_scene();
 };
 
 }; // namespace Myrt::Scene

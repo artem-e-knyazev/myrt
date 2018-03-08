@@ -24,6 +24,7 @@ auto parse_options(int argc, char **argv) {
 
 auto prepare_test_scene(float aspect) {
     using Myrt::Scene::make_scene;
+    using Myrt::Object::make_object;
     using Myrt::Object::Sphere;
 
     auto scene = make_scene();
@@ -47,7 +48,7 @@ int main(int argc, char **argv) {
     auto options = parse_options(argc, argv);
     auto image = make_output_image(options);
     auto scene = prepare_test_scene(image->getAspectRatio());
-    trace_scene<Myrt::Tracer::SimpleTracer>(options, scene, image);
+    trace_scene<Myrt::Tracer::SimpleTracer>(options->getTracerOptions(), scene, image);
     image->save();
 }
 

@@ -1,7 +1,12 @@
 #ifndef MYRT_OBJECT_SPHERE_HPP
 #define MYRT_OBJECT_SPHERE_HPP
 
+#include "object/AbstractObject.hpp"
+#include "hit_record/HitRecord.hpp"
+
 namespace Myrt::Object {
+
+using Myrt::HitRecord::HitRecord;
 
 class Sphere: public AbstractObject {
 public:
@@ -12,9 +17,9 @@ public:
     virtual bool doHit(const ray4& ray, float& tmin, HitRecord& hr) const override {
         float t;
         vec4 tmp = ray.m_orig - mCenter;
-        float a = ray.m_dir * ray.m_dir;
-        float b = 2.f * (tmp * ray.m_dir);
-        float c = tmp * tmp - mRadius - mRadius;
+        float a = Dot3(ray.m_dir, ray.m_dir);
+        float b = 2.f * Dot3(tmp, ray.m_dir);
+        float c = Dot3(tmp, tmp) - mRadius * mRadius;
         float d = b * b - 4.f * a * c;
 
         if (d < .0f)

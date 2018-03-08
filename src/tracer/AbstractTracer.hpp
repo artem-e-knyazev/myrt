@@ -1,7 +1,15 @@
 #ifndef MYRT_TRACER_ABSTRACT_TRACER
 #define MYRT_TRACER_ABSTRACT_TRACER
 
+#include "scene/Scene.hpp"
+#include "image/OutputImage.hpp"
+#include "options/Options.hpp"
+
 namespace Myrt::Tracer {
+
+using Myrt::Scene::ScenePtr;
+using Myrt::Image::OutputImagePtr;
+using Myrt::Options::TracerOptionsPtr;
 
 class AbstractTracer {
 private:
@@ -10,13 +18,13 @@ private:
     unsigned int mSamples;
 
 protected:
-    ScenePtr getScene()
+    ScenePtr getScene() const
     { return mpScene; }
 
-    OutputImagePtr getOutputImage()
+    OutputImagePtr getOutputImage() const
     { return mpImage; }
 
-    unsigned int getSamples()
+    unsigned int getSamples() const
     { return mSamples; }
 
 public:
