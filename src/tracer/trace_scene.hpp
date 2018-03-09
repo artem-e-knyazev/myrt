@@ -8,7 +8,7 @@ namespace Myrt::Tracer {
 
 template <typename TracerType>
 void trace_scene(TracerOptionsPtr pOptions, ScenePtr pScene, OutputImagePtr pImage) {
-    auto pTracer = std::unique_ptr<TracerType>();
+    auto pTracer = std::make_unique<TracerType>();
     pTracer->setOptions(pOptions);
     pTracer->setScene(pScene);
     pTracer->setOutputImage(pImage);

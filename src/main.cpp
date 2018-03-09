@@ -28,13 +28,13 @@ auto prepare_test_scene(float aspect) {
     using Myrt::Object::Sphere;
 
     auto scene = make_scene();
-    scene->addObject(make_object<Sphere>(Vec4(0.f, 0.f, 0.f), 1.f));
-    scene->addObject(make_object<Sphere>(Vec4(0.f, 0.f, 0.f), 1.f));
+    scene->addObject(make_object<Sphere>(Vec4(0.f, 0.f, -1.f), .5f));
+    scene->addObject(make_object<Sphere>(Vec4(0.f, -100.5f, -1.f), 100.f));
 
     using Myrt::Camera::make_camera;
 
     auto pCamera = make_camera<Myrt::Camera::SimpleCamera>(
-            Vec4(0.f, 0.f, 0.f), Vec4(0.f, 0.f, -1.f), Vec4(0.f, 1.f, 0.f),
+            Vec4(0.f, 0.f, -3.f), Vec4(0.f, 0.f, 0.f), Vec4(0.f, 1.f, 0.f),
             60.f, aspect);
     scene->setCamera(pCamera);
 

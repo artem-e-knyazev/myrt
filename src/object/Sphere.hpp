@@ -31,7 +31,8 @@ public:
             tmin = t;
             hr.mNormal = Normalize(tmp + t * ray.m_dir);
             hr.mHitPoint = ray.m_orig + t * ray.m_dir;
-            hr.mColor = Color(.5f, .5f, .5f);
+            hr.mColor = .5f * Color(hr.mNormal.x + 1.f, hr.mNormal.y + 1.f, hr.mNormal.z + 1.f);
+            return true;
         }
 
         t = (-b + e) * invDenom;
@@ -39,7 +40,8 @@ public:
             tmin = t;
             hr.mNormal = Normalize(tmp + t * ray.m_dir);
             hr.mHitPoint = ray.m_orig + t * ray.m_dir;
-            hr.mColor = Color(.5f, .5f, .5f);
+            hr.mColor = .5f * Color(hr.mNormal.x + 1.f, hr.mNormal.y + 1.f, hr.mNormal.z + 1.f);
+            return true;
         }
 
         return false;

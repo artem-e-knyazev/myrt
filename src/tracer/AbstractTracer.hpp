@@ -18,10 +18,10 @@ private:
     unsigned int mSamples;
 
 protected:
-    ScenePtr getScene() const
+    const ScenePtr& getScene() const
     { return mpScene; }
 
-    OutputImagePtr getOutputImage() const
+    const OutputImagePtr& getOutputImage() const
     { return mpImage; }
 
     unsigned int getSamples() const
