@@ -13,32 +13,41 @@ public:
 
         float nn;
         vec4 normal;
-        // make normal codirectional to the ray direction
-        // and use appropriate ref. ind. fraction
+        float costh;
+        // ray can come either from the outside medium, or from inside when refracted
         if (Dot3(ray.m_dir, hr.mNormal) > 0) {
             normal = -hr.mNormal;
             nn = mRefIndFrac;
+            costh = mRefIndFrac * Dot3(ray.m_dir, hr.mNormal);
         } else {
             normal = hr.mNormal;
             nn = 1.f / mRefIndFrac;
+            costh = -Dot3(ray.m_dir, hr.mNormal);
         }
 
         vec4 refracted;
+        float refl_prob;
         if (refract(ray.m_dir, normal, nn, refracted)) {
-            scattered.m_orig = hr.mHitPoint;
-            scattered.m_dir = refracted;
-            return false;
+            refl_prob = schlick(costh, mRefIndFrac);
         } else {
-            vec4 reflected = ray.m_dir - 2.f * Dot3(ray.m_dir, hr.mNormal) * hr.mNormal;
-            scattered.m_orig = hr.mHitPoint;
-            scattered.m_dir = reflected;
-            return true;
+            refl_prob = 1.f;
         }
+
+        static std::random_device rd;
+        static std::mt19937 gen(rd());
+        static std::uniform_real_distribution<> dis(0.f, 1.f);
+        if (dis(gen) < refl_prob) {
+            vec4 reflected = ray.m_dir - 2.f * Dot3(ray.m_dir, hr.mNormal) * hr.mNormal;
+            scattered.m_dir = reflected;
+        } else {
+            scattered.m_dir = refracted;
+        }
+        scattered.m_orig = hr.mHitPoint;
+        return true;
     }
 
 protected:
     // derivation in https://physics.stackexchange.com/a/159975
-    // assumes incoming and normal vectors are codirectional
     bool refract(const vec4& incoming, const vec4& normal, float nn, vec4& transmitted) const {
         float costh1 = Dot3(incoming, normal);
         float sqcosth2 = 1.f - nn * nn * (1.f - costh1 * costh1);
@@ -46,6 +55,12 @@ protected:
             return false;
         transmitted = nn * incoming + (costh1 * nn - std::sqrt(sqcosth2)) * normal;
         return true;
+    }
+
+    float schlick(float costh, float nn) const {
+        float a = (1.f-nn)/(1.f+nn);
+        a = a * a;
+        return a + (1 - a) * std::pow(1-costh, 5);
     }
 
 private:

@@ -23,6 +23,32 @@ auto parse_options(int argc, char **argv) {
     }
 }
 
+auto prepare_test_scene_one_sphere(float aspect) {
+    using Myrt::Scene::make_scene;
+    auto scene = make_scene();
+
+    using Myrt::Object::make_object;
+    using Myrt::Object::Sphere;
+    auto object = make_object<Sphere>(Vec4(0.f, 0.f, -1.f), .5f);
+
+    using Myrt::Material::make_material;
+    using Myrt::Material::Lambertian;
+    using Myrt::Material::Metal;
+    using Myrt::Material::Dielectric;
+    //auto material = make_material<Lambertian>(Color(.8f, .3f, .3f));
+    auto material = make_material<Dielectric>(1.5);
+    object->setMaterial(material);
+    scene->addObject(object);
+
+    using Myrt::Camera::make_camera;
+    auto pCamera = make_camera<Myrt::Camera::SimpleCamera>(
+            Vec4(0.f, 0.f, 3.f), Vec4(0.f, 0.f, 0.f), Vec4(0.f, 1.f, 0.f),
+            60.f, aspect);
+    scene->setCamera(pCamera);
+
+    return scene;
+}
+
 auto prepare_test_scene(float aspect) {
     using Myrt::Scene::make_scene;
     auto scene = make_scene();
@@ -38,9 +64,9 @@ auto prepare_test_scene(float aspect) {
     using Myrt::Material::Lambertian;
     using Myrt::Material::Metal;
     using Myrt::Material::Dielectric;
-    auto material1 = make_material<Lambertian>(Color(.8f, .3f, .3f));
+    auto material1 = make_material<Lambertian>(Color(.1f, .2f, .5f));
     auto material2 = make_material<Lambertian>(Color(.8f, .8f, .0f));
-    auto material3 = make_material<Metal>(Color(.8f, .6f, .2f), .3f);
+    auto material3 = make_material<Metal>(Color(.8f, .5f, .2f));
     //auto material4 = make_material<Metal>(Color(.8f, .8f, .8f), 1.f);
     auto material4 = make_material<Dielectric>(1.5f);
 
@@ -56,8 +82,8 @@ auto prepare_test_scene(float aspect) {
 
     using Myrt::Camera::make_camera;
     auto pCamera = make_camera<Myrt::Camera::SimpleCamera>(
-            Vec4(0.f, 0.f, -3.f), Vec4(0.f, 0.f, 0.f), Vec4(0.f, 1.f, 0.f),
-            60.f, aspect);
+            Vec4(0.f, 0.f, 3.f), Vec4(0.f, 0.f, 0.f), Vec4(0.f, 1.f, 0.f),
+            30.f, aspect);
     scene->setCamera(pCamera);
 
     return scene;

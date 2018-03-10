@@ -32,10 +32,12 @@ public:
                 c /= samples;
                 pImage->setPixelColor(x, y, c);
             }
+            (y!=0 && y%50==0) && std::cerr << "processed y=" << y << std::endl;
         }
     }
 
 private:
+    // todo: make max_depth a console option
     color traceRay(const ray4& ray, unsigned int maxDepth = 10) const {
         using Myrt::HitRecord::HitRecord;
 
