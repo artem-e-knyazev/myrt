@@ -46,7 +46,7 @@ int main(int argc, char **argv) {
     using Myrt::Tracer::trace_scene;
 
     auto options = parse_options(argc, argv);
-    auto image = make_output_image(options);
+    auto image = make_output_image(options->getOutputImageOptions());
     auto scene = prepare_test_scene(image->getAspectRatio());
     trace_scene<Myrt::Tracer::SimpleTracer>(options->getTracerOptions(), scene, image);
     image->save();

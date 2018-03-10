@@ -6,8 +6,6 @@
 
 namespace Myrt::Tracer {
 
-using Myrt::HitRecord::HitRecord;
-
 class SimpleTracer: public AbstractTracer {
 public:
     virtual void trace() const override {
@@ -39,6 +37,8 @@ public:
 
 private:
     color traceRay(const ray4& ray) const {
+        using Myrt::HitRecord::HitRecord;
+
         float t = std::numeric_limits<float>::max();
         HitRecord hr;
         if (getScene()->hit(ray, t, hr)) {

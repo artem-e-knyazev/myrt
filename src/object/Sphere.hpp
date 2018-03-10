@@ -18,16 +18,16 @@ public:
         float t;
         vec4 tmp = ray.m_orig - mCenter;
         float a = Dot3(ray.m_dir, ray.m_dir);
-        float b = 2.f * Dot3(tmp, ray.m_dir);
+        float b = Dot3(tmp, ray.m_dir);
         float c = Dot3(tmp, tmp) - mRadius * mRadius;
-        float d = b * b - 4.f * a * c;
+        float d = b * b - a * c;
 
         if (d < .0f)
             return false;
         float e = std::sqrt(d);
-        float invDenom = .5f / a;
-        t = (-b - e) * invDenom;
-        if (t > 10e-6f) {
+        float inva = 1.f / a;
+        t = (-b - e) * inva;
+        if (t > 10e-6f && t < tmin) {
             tmin = t;
             hr.mNormal = Normalize(tmp + t * ray.m_dir);
             hr.mHitPoint = ray.m_orig + t * ray.m_dir;
@@ -35,8 +35,8 @@ public:
             return true;
         }
 
-        t = (-b + e) * invDenom;
-        if (t > 10e-6f) {
+        t = (-b + e) * inva;
+        if (t > 10e-6f && t < tmin) {
             tmin = t;
             hr.mNormal = Normalize(tmp + t * ray.m_dir);
             hr.mHitPoint = ray.m_orig + t * ray.m_dir;

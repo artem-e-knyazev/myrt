@@ -7,7 +7,6 @@
 
 namespace Myrt::Image {
 
-using Myrt::Options::OptionsPtr;
 using Myrt::Options::OutputImageOptionsPtr;
 using Myrt::Image::Saver::ImageSaverPtr;
 using Myrt::Image::Saver::make_image_saver;
@@ -45,7 +44,7 @@ public:
         mpImageSaver->save();
     }
 
-    friend OutputImagePtr make_output_image(OptionsPtr);
+    friend OutputImagePtr make_output_image(OutputImageOptionsPtr);
 };
 
 } // namespace Myrt::Image

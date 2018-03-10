@@ -37,7 +37,7 @@ private:
           mImageWidth(800), 
           mImageHeight(400),
           mSamples(100),
-          mGamma(2.f),
+          mGamma(1.f),
           mImageType(ImageType::PPM),
           mVerbose(false)
     {}

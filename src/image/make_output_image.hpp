@@ -5,11 +5,11 @@
 
 namespace Myrt::Image {
 
-using Myrt::Options::OptionsPtr;
+using Myrt::Options::OutputImageOptionsPtr;
 
-OutputImagePtr make_output_image(OptionsPtr pOptions) {
+OutputImagePtr make_output_image(OutputImageOptionsPtr pOptions) {
     OutputImagePtr ptr;
-    ptr.reset(new OutputImage(pOptions->getOutputImageOptions()));
+    ptr.reset(new OutputImage(pOptions));
     return ptr;
 }
 

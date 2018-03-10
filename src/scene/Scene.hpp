@@ -34,7 +34,7 @@ public:
     bool hit(const ray4& ray, float& tmin, HitRecord& hr) {
         bool isHit = false;
         HitRecord thr;
-        float ttmin;
+        float ttmin = tmin;
         for (const auto& pObject: mObjects) {
             if (pObject->hit(ray, ttmin, thr) && (ttmin < tmin)) {
                 tmin = ttmin;
