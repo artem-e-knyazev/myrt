@@ -32,17 +32,25 @@ public:
                 c /= samples;
                 pImage->setPixelColor(x, y, c);
             }
+            (y!=0 && y%50==0) && std::cerr << "processed y=" << y << std::endl;
         }
     }
 
 private:
-    color traceRay(const ray4& ray) const {
+    // todo: make max_depth a console option
+    color traceRay(const ray4& ray, unsigned int maxDepth = 10) const {
         using Myrt::HitRecord::HitRecord;
 
         float t = std::numeric_limits<float>::max();
         HitRecord hr;
         if (getScene()->hit(ray, t, hr)) {
-            return hr.mColor;
+            ray4 scattered;
+            color attenuation;
+            if (maxDepth > 0 && hr.mpMaterial->scatter(ray, hr, attenuation, scattered)) {
+                return attenuation * traceRay(scattered, maxDepth-1);
+            } else {
+                return black;
+            }
         }
         vec4 unit = Normalize(ray.m_dir);
         t = .5f * (unit.y + 1.f);

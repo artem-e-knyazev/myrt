@@ -15,6 +15,7 @@ public:
     {}
 
     virtual bool doHit(const ray4& ray, float& tmin, HitRecord& hr) const override {
+        // todo: move to myrt_math into collision_ray_sphere function!
         float t;
         vec4 tmp = ray.m_orig - mCenter;
         float a = Dot3(ray.m_dir, ray.m_dir);
@@ -29,18 +30,18 @@ public:
         t = (-b - e) * inva;
         if (t > 10e-6f && t < tmin) {
             tmin = t;
+            hr.mpMaterial = getMaterial();
             hr.mNormal = Normalize(tmp + t * ray.m_dir);
             hr.mHitPoint = ray.m_orig + t * ray.m_dir;
-            hr.mColor = .5f * Color(hr.mNormal.x + 1.f, hr.mNormal.y + 1.f, hr.mNormal.z + 1.f);
             return true;
         }
 
         t = (-b + e) * inva;
         if (t > 10e-6f && t < tmin) {
             tmin = t;
+            hr.mpMaterial = getMaterial();
             hr.mNormal = Normalize(tmp + t * ray.m_dir);
             hr.mHitPoint = ray.m_orig + t * ray.m_dir;
-            hr.mColor = .5f * Color(hr.mNormal.x + 1.f, hr.mNormal.y + 1.f, hr.mNormal.z + 1.f);
             return true;
         }
 

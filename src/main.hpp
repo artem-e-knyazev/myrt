@@ -17,3 +17,6 @@
 #include "myrt_math/ray4.hpp"
 #include "myrt_math/color.hpp"
 
+// Arbitrary app libs go here
+#include "random/Random.hpp"
+
