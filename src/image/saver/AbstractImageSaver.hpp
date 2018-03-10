@@ -46,7 +46,7 @@ protected:
 
 private:
     ImageBufferPtr mpImageBuffer;
-    float mGamma = 2.f;
+    float mGamma;
     std::string mPath;
 };
 

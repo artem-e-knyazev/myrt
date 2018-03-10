@@ -7,7 +7,6 @@
 
 namespace Myrt::Image {
 
-using Myrt::Options::OptionsPtr;
 using Myrt::Options::OutputImageOptionsPtr;
 using Myrt::Image::Saver::ImageSaverPtr;
 using Myrt::Image::Saver::make_image_saver;
@@ -32,11 +31,20 @@ public:
         mpImageBuffer->setPixelColor(x, y, c);
     }
 
+    unsigned int getWidth() const
+    { return mpImageBuffer->getWidth(); }
+
+    unsigned int getHeight() const
+    { return mpImageBuffer->getHeight(); }
+
+    float getAspectRatio() const
+    { return float(mpImageBuffer->getWidth()) / float(mpImageBuffer->getHeight()); }
+
     void save() {
         mpImageSaver->save();
     }
 
-    friend OutputImagePtr make_output_image(OptionsPtr);
+    friend OutputImagePtr make_output_image(OutputImageOptionsPtr);
 };
 
 } // namespace Myrt::Image

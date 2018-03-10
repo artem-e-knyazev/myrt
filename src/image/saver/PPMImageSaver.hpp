@@ -13,8 +13,8 @@ protected:
         unsigned int height = getImageHeight();
         std::ofstream ofs(getPath());
         ofs << "P3\n" << width << " " << height << "\n255\n";
-        for (unsigned int x = 0; x < width; ++x) {
-            for (unsigned int y = 0; y < height; ++y) {
+        for (unsigned int y = 0; y < height; ++y) {
+            for (unsigned int x = 0; x < width; ++x) {
                 rgb_color c = getPixelColor(x, y);
                 ofs << int(c.r) << " " << int(c.g) << " " << int(c.b) << "\n";
             }
