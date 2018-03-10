@@ -36,13 +36,19 @@ public:
     }
 
 private:
-    color traceRay(const ray4& ray) const {
+    color traceRay(const ray4& ray, unsigned int maxDepth = 10) const {
         using Myrt::HitRecord::HitRecord;
 
         float t = std::numeric_limits<float>::max();
         HitRecord hr;
         if (getScene()->hit(ray, t, hr)) {
-            return hr.mColor;
+            ray4 scattered;
+            color attenuation;
+            if (maxDepth > 0 && hr.mpMaterial->scatter(ray, hr, attenuation, scattered)) {
+                return attenuation * traceRay(scattered, maxDepth-1);
+            } else {
+                return black;
+            }
         }
         vec4 unit = Normalize(ray.m_dir);
         t = .5f * (unit.y + 1.f);

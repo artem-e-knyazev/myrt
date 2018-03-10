@@ -4,6 +4,7 @@
 #include "options/parse_options.hpp"
 #include "options/get_help_string.hpp"
 #include "scene/make_scene.hpp"
+#include "material/make_material.hpp"
 #include "object/make_object.hpp"
 #include "camera/make_camera.hpp"
 #include "image/make_output_image.hpp"
@@ -24,15 +25,36 @@ auto parse_options(int argc, char **argv) {
 
 auto prepare_test_scene(float aspect) {
     using Myrt::Scene::make_scene;
+    auto scene = make_scene();
+
     using Myrt::Object::make_object;
     using Myrt::Object::Sphere;
+    auto object1 = make_object<Sphere>(Vec4(0.f, 0.f, -1.f), .5f);
+    auto object2 = make_object<Sphere>(Vec4(0.f, -100.5f, -1.f), 100.f);
+    auto object3 = make_object<Sphere>(Vec4(1.f, 0.f, -1.f), .5f);
+    auto object4 = make_object<Sphere>(Vec4(-1.f, 0.f, -1.f), .5f);
 
-    auto scene = make_scene();
-    scene->addObject(make_object<Sphere>(Vec4(0.f, 0.f, -1.f), .5f));
-    scene->addObject(make_object<Sphere>(Vec4(0.f, -100.5f, -1.f), 100.f));
+    using Myrt::Material::make_material;
+    using Myrt::Material::Lambertian;
+    using Myrt::Material::Metal;
+    using Myrt::Material::Dielectric;
+    auto material1 = make_material<Lambertian>(Color(.8f, .3f, .3f));
+    auto material2 = make_material<Lambertian>(Color(.8f, .8f, .0f));
+    auto material3 = make_material<Metal>(Color(.8f, .6f, .2f), .3f);
+    //auto material4 = make_material<Metal>(Color(.8f, .8f, .8f), 1.f);
+    auto material4 = make_material<Dielectric>(1.5f);
+
+    object1->setMaterial(material1);
+    object2->setMaterial(material2);
+    object3->setMaterial(material3);
+    object4->setMaterial(material4);
+
+    scene->addObject(object1);
+    scene->addObject(object2);
+    scene->addObject(object3);
+    scene->addObject(object4);
 
     using Myrt::Camera::make_camera;
-
     auto pCamera = make_camera<Myrt::Camera::SimpleCamera>(
             Vec4(0.f, 0.f, -3.f), Vec4(0.f, 0.f, 0.f), Vec4(0.f, 1.f, 0.f),
             60.f, aspect);
