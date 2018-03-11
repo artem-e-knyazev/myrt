@@ -16,6 +16,7 @@ public:
     virtual color getColor(float u, float v, const vec4& p) const override {
         int x = std::floor(u * mNX);
         int y = std::floor(v * mNY);
+        // todo: smooth later
         if ((x % 2) == (y % 2))
             return mpRed->getColor(u, v, p);
         else
