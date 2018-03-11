@@ -55,10 +55,11 @@ auto prepare_test_scene(float aspect) {
 
     using Myrt::Object::make_object;
     using Myrt::Object::Sphere;
-    auto object1 = make_object<Sphere>(Vec4(0.f, 0.f, -1.f), .5f);
-    auto object2 = make_object<Sphere>(Vec4(0.f, -100.5f, -1.f), 100.f);
-    auto object3 = make_object<Sphere>(Vec4(1.f, 0.f, -1.f), .5f);
-    auto object4 = make_object<Sphere>(Vec4(-1.f, 0.f, -1.f), .5f);
+    auto object1 = make_object<Sphere>(Vec4(0.f, 0.f, 0.f), .5f);
+    auto object2 = make_object<Sphere>(Vec4(0.f, -100.5f, 0.f), 100.f);
+    auto object3 = make_object<Sphere>(Vec4(1.f, 0.f, 0.f), .5f);
+    auto object4 = make_object<Sphere>(Vec4(-1.f, 0.f, 0.f), .5f);
+    auto object5 = make_object<Sphere>(Vec4(-1.f, 0.f, 0.f), -.45f);
 
     using Myrt::Material::make_material;
     using Myrt::Material::Lambertian;
@@ -74,16 +75,20 @@ auto prepare_test_scene(float aspect) {
     object2->setMaterial(material2);
     object3->setMaterial(material3);
     object4->setMaterial(material4);
+    object5->setMaterial(material4);
 
     scene->addObject(object1);
     scene->addObject(object2);
     scene->addObject(object3);
     scene->addObject(object4);
+    scene->addObject(object5);
 
     using Myrt::Camera::make_camera;
-    auto pCamera = make_camera<Myrt::Camera::SimpleCamera>(
-            Vec4(0.f, 0.f, 3.f), Vec4(0.f, 0.f, 0.f), Vec4(0.f, 1.f, 0.f),
-            30.f, aspect);
+    using Myrt::Camera::SimpleCamera;
+    using Myrt::Camera::LensCamera;
+    auto pCamera = make_camera<LensCamera>(
+            Vec4(-1.15f, 0.15f, 3.f), Vec4(-.15f, 0.f, 0.f), Vec4(0.f, 1.f, 0.f),
+            30.f, aspect, .05f);
     scene->setCamera(pCamera);
 
     return scene;

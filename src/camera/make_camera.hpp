@@ -3,6 +3,7 @@
 
 #include "camera/AbstractCamera.hpp"
 #include "camera/SimpleCamera.hpp"
+#include "camera/LensCamera.hpp"
 
 namespace Myrt::Camera {
 
