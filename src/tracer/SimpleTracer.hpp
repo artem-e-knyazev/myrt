@@ -25,8 +25,8 @@ public:
             for (unsigned int x = 0; x < width; ++x) {
                 color c = black;
                 for (unsigned int i = 0; i < samples; ++i) {
-                    float u = float(x) * invW;
-                    float v = 1.f - float(y) * invH;
+                    float u = float(x + dis(gen)) * invW;
+                    float v = 1.f - float(y + dis(gen)) * invH;
                     c += traceRay(pCamera->getRay(u, v));
                 }
                 c /= samples;
