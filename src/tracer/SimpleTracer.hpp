@@ -25,8 +25,8 @@ public:
             for (unsigned int x = 0; x < width; ++x) {
                 color c = black;
                 for (unsigned int i = 0; i < samples; ++i) {
-                    float u = float(x + dis(gen)) * invW;
-                    float v = 1.f - float(y + dis(gen)) * invH;
+                    float u = float(x) * invW;
+                    float v = 1.f - float(y) * invH;
                     c += traceRay(pCamera->getRay(u, v));
                 }
                 c /= samples;
@@ -38,7 +38,7 @@ public:
 
 private:
     // todo: make max_depth a console option
-    color traceRay(const ray4& ray, unsigned int maxDepth = 10) const {
+    color traceRay(const ray4& ray, unsigned int maxDepth = 1) const {
         using Myrt::HitRecord::HitRecord;
 
         float t = std::numeric_limits<float>::max();

@@ -3,10 +3,12 @@
 
 #include "material/forward.hpp"
 #include "hit_record/HitRecord.hpp"
+#include "texture/AbstractTexture.hpp"
 
 namespace Myrt::Material {
 
 using Myrt::HitRecord::HitRecord;
+using Myrt::Texture::TexturePtr;
 
 class AbstractMaterial {
 public:
