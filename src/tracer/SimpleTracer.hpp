@@ -38,7 +38,7 @@ public:
 
 private:
     // todo: make max_depth a console option
-    color traceRay(const ray4& ray, unsigned int maxDepth = 10) const {
+    color traceRay(const ray4& ray, unsigned int maxDepth = 20) const {
         using Myrt::HitRecord::HitRecord;
 
         float t = std::numeric_limits<float>::max();

@@ -11,6 +11,8 @@ struct HitRecord {
     vec4        mNormal;
     vec4        mHitPoint;
     MaterialPtr mpMaterial;
+    float       mU;
+    float       mV;
 };
 
 } // namespace Myrt::HitRecord

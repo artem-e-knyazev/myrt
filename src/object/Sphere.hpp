@@ -33,6 +33,7 @@ public:
             hr.mpMaterial = getMaterial();
             hr.mNormal = Normalize(tmp + t * ray.m_dir);
             hr.mHitPoint = ray.m_orig + t * ray.m_dir;
+            getUV(hr.mNormal, hr.mU, hr.mV);
             return true;
         }
 
@@ -42,6 +43,7 @@ public:
             hr.mpMaterial = getMaterial();
             hr.mNormal = Normalize(tmp + t * ray.m_dir);
             hr.mHitPoint = ray.m_orig + t * ray.m_dir;
+            getUV(hr.mNormal, hr.mU, hr.mV);
             return true;
         }
 
@@ -51,6 +53,11 @@ public:
 private:
     vec4 mCenter;
     float mRadius;
+
+    void getUV(const vec4& n, float& u, float& v) const {
+        u = .5f * (1.f - std::atan2(n.z, n.x) / M_PI);
+        v = std::asin(n.y) / M_PI + .5f;
+    }
 };
 
 } // namespace Myrt::Object
