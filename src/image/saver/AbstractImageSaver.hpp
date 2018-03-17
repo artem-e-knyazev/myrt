@@ -1,7 +1,6 @@
 #ifndef MYRT_ABSTRACT_IMAGE_SAVER_HPP
 #define MYRT_ABSTRACT_IMAGE_SAVER_HPP
 
-#include "myrt_math/color.hpp"
 #include "options/Options.hpp"
 #include "image/buffer/ImageBuffer.hpp"
 #include "image/saver/ImageType.hpp"

@@ -1,9 +1,6 @@
 #ifndef MYRT_IMAGE_BUFFER_HPP
 #define MYRT_IMAGE_BUFFER_HPP
 
-#include <vector>
-
-#include "myrt_math/color.hpp"
 #include "options/Options.hpp"
 
 namespace Myrt::Image::Buffer {
