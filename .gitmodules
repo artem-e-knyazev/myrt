@@ -1,3 +1,3 @@
-[submodule "submodules/myrt_math"]
-	path = submodules/myrt_math
-	url = https://github.com/artem-e-knyazev/myrt_math.git
+[submodule "submodules/myrt-math"]
+	path = submodules/myrt-math
+	url = https://github.com/artemeknyazev/myrt-math.git

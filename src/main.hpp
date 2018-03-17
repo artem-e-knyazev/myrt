@@ -12,10 +12,10 @@
 #include <cmath>
 #include <random>
 
-// Submodule go here
-#include "myrt_math/vec4.hpp"
-#include "myrt_math/ray4.hpp"
-#include "myrt_math/color.hpp"
+// Submodules go here
+#include "myrt-math/vec4.hpp"
+#include "myrt-math/ray4.hpp"
+#include "myrt-math/color.hpp"
 
 // Arbitrary app libs go here
 #include "random/Random.hpp"

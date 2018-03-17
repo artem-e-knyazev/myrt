@@ -4,7 +4,7 @@ BINARY_PATH:=$(BINARY_DIR)/$(BINARY_NAME)
 
 OUTPUT:=-o $(BINARY_PATH)
 
-INCLUDE_MYRT_MATH:=-I submodules/myrt_math/include
+INCLUDE_MYRT_MATH:=-I submodules/myrt-math/include
 INCLUDE_MYRT:=-I src
 INCLUDE:=$(INCLUDE_MYRT_MATH) $(INCLUDE_MYRT)
 
