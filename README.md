@@ -54,9 +54,9 @@ Material is an abstraction that defines how rays are reflected/refracted and att
 
 Texture is just a function that returns a color for a specific point of object in UV-coords.
 
-Note `for each pixel we produce a ray` part. To define how rays a produced from pixels we abstract a Camera object that accepts normalized image coordinates and returns a ray. We can experiment with emitted rays creating a Depth of Field effect. To simplify things, we add Camera to Scene.
-
 We use ImageBuffer to abstract a container of pixels. It will be populated by the Tracer and then saved into an image of some format using ImageSaver API. Currently only PPM format is supported.
+
+To define how rays a produced from pixels of output image (that essentially acts like a screen we project onto) we abstract a Camera object that accepts normalized image coordinates and returns a ray. We can experiment with emitted rays creating a Depth of Field effect. To simplify things, we add Camera to Scene.
 
 So, we defined a Scene, populated it with objects, defined Camera as a view point and created an output image buffer. Now we pass all of these objects into a Tracer that does the magic.
 
