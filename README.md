@@ -2,6 +2,44 @@
 
 *Myrt* stands for "My RayTracer". It's a simple path tracing app, written to experiment with C++ in the "real app" context. It uses `myrt-math` package that abstracts some 3D math types and operations.
 
+## Table of Contents
+
+* [Installation](https://github.com/artemeknyazev/myrt#installation)
+* [Options](https://github.com/artemeknyazev/myrt#options)
+* [Inspirations](https://github.com/artemeknyazev/myrt#inspirations)
+* [Architecture](https://github.com/artemeknyazev/myrt#architecture)
+* [Example output](https://github.com/artemeknyazev/myrt#example-output)
+
+## Installation
+
+```
+> git clone --recursive https://github.com/artemeknyazev/myrt.git
+```
+or
+```
+> git clone https://github.com/artemeknyazev/myrt.git
+> cd ./myrt
+> git submodule update --init recursive
+```
+Then
+```
+> make
+> ./build/myrt <options>
+```
+
+## Options
+```
+> ./build/myrt --help
+Following options are available:
+    -o <path>  output image path; default is "output.ppm";
+    -w <int>   image width; default is 800;
+    -h <int>   image height; default is 400;
+    -g <float> output image gamma; default is 2.0;
+    -s <int>   samples per pixel; default is 100;
+    -v         verbose mode; off by default; // currently does nothing
+    --help     this message
+```
+
 ## Inspirations
 
 It is inspired mostly by Peter Shirley's book series on raytracing ([one](https://www.amazon.com/Ray-Tracing-Weekend-Minibooks-Book-ebook/dp/B01B5AODD8/ref=asap_bc?ie=UTF8), [two](https://www.amazon.com/Ray-Tracing-Next-Week-Minibooks-ebook/dp/B01CO7PQ8C/ref=asap_bc?ie=UTF8) and [three](https://www.amazon.com/Ray-Tracing-Rest-Your-Minibooks-ebook/dp/B01DN58P8C/ref=asap_bc?ie=UTF8)). Some of the code is just copy-pasted, but I plan to rewrite it sometime (extract collision code into `myrt-math`, add other types of objects, add thread pool for multithreaded tracer).
