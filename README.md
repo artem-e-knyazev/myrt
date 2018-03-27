@@ -1,6 +1,6 @@
 # Myrt
 
-*Myrt* stands for "My RayTracer". It's a simple path tracing app, written to experiment with C++ in the "real app" context. It uses `myrt-math` package that abstracts some 3D math types and operations.
+**Myrt** stands for **My** **R**ay **T**racer. It's a simple path tracing app inspired by Peter Shirley's books on raytracing (some code is just blatantly copied), written to experiment with C++ in the "real app" context. It uses `myrt-math` package that abstracts some 3D math types and operations.
 
 ## Table of Contents
 
