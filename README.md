@@ -23,3 +23,11 @@ We use ImageBuffer to abstract a container of pixels. It will be populated by th
 So, we defined a Scene, populated it with objects, defined Camera as a view point and created an output image buffer. Now we pass all of these objects into a Tracer that does the magic.
 
 For each pixel of the output image we produce a ray that hits a scene object (or not). If it hits, the ray color is attenuated by the texture color and the ray is reflected/refracted by the object material. We create new reflected/refracted ray from the hit point and iterate until depth exceedes the limit. After we just save the image.
+
+## Example output
+
+### Example 1
+
+Fuzzy metal sphere to the left, checkered lambertian sphere in the center, metal (fully reflective) sphere to the right, big diffuse sphere at the bottom as a ground. Sky color is hardcoded using simple vector math.
+
+![Example 1](https://github.com/artemeknyazev/myrt/blob/master/examples/example-1-800x400-gamma-2.png)
