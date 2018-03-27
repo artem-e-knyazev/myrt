@@ -1,37 +1,7 @@
-### Camera
+# Myrt
 
-Produces a ray for given (u, v) image point.
+*Myrt* stands for "My RayTracer". It's a simple path tracing app, written to experiment with C++ in the "real app" context. It uses `myrt-math` package that abstracts some 3D math types and operations.
 
-Required only aspect ratio and position in simple case.
+## Inspirations
 
-### Image (or ImageBuffer, PixelBuffer)?
-
-Contains rendered pixels. Stores color. Can either save itself, or use factory to save in the specified format (e.g. PPMImageSaver accepts PixelBuffer, applies gamma and outputs to file).
-
-### Abstract object
-
-Pure virtual class. Is hitable, i.e. returns true when ray hits it, outputs ray hit position and hit record with color and other properties, e.g. material.
-
-### ObjectCollection or Scene
-
-Is also hitable, but contains all other objects as a list of pointers to AbstractObjects. When calling hit returns if any object inside is hit and outputs hit record for the object that is nearest to the ray origin.
-
-### SceneObjects or MaterialObjects
-
-Pure virtual. MaterialObject inherits from the AbstractObject and contains a reference to a Material. Use `get/setMaterial`. From this objects should inherit all actual objects. Can also add transform member and helpers for bboxes?
-
-### Actual objects
-
-Can be instantiated. Implements desired hit function, i.e. defines form of the objects.
-
-### Material
-
-Defines scattering, attenuation and so on. Contains a pointer to a texture.
-
-### Texture
-
-Defines color at the specified point of the object.
-
-### Tracer
-
-Accepts Scene, Camera and PixelBuffer and renders scene into the latter.
+It is inspired mostly by Peter Shirley's book series on raytracing ([one](https://www.amazon.com/Ray-Tracing-Weekend-Minibooks-Book-ebook/dp/B01B5AODD8/ref=asap_bc?ie=UTF8), [two](https://www.amazon.com/Ray-Tracing-Next-Week-Minibooks-ebook/dp/B01CO7PQ8C/ref=asap_bc?ie=UTF8) and [three](https://www.amazon.com/Ray-Tracing-Rest-Your-Minibooks-ebook/dp/B01DN58P8C/ref=asap_bc?ie=UTF8). Some of the code is just copy-pasted, but I plan to rewrite it sometime.
