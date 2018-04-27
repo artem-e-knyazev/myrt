@@ -14,24 +14,31 @@
 
 Requires CMake >= 3.0.0.
 
-```
+```shell
 > git clone --recursive https://github.com/artemeknyazev/myrt.git
 ```
 or
-```
+```shell
 > git clone https://github.com/artemeknyazev/myrt.git
 > cd ./myrt
 > git submodule update --init recursive
+> cd myrt && mkdir -p build && cd build
 ```
 Then
-```
-> cd myrt && mkdir -p build && cd build
+```shell
 > cmake ../
+> make
 > ./myrt <options>
+```
+or
+```shell
+> cmake -GXcode ../
+> xcodebuild
+> ./Debug/myrt <options>
 ```
 
 ## Options
-```
+```shell
 > ./build/myrt --help
 Following options are available:
     -o <path>  output image path; default is "output.ppm";
@@ -45,7 +52,7 @@ Following options are available:
 
 ## Inspirations
 
-It is inspired mostly by Peter Shirley's book series on raytracing ([one](https://www.amazon.com/Ray-Tracing-Weekend-Minibooks-Book-ebook/dp/B01B5AODD8/ref=asap_bc?ie=UTF8), [two](https://www.amazon.com/Ray-Tracing-Next-Week-Minibooks-ebook/dp/B01CO7PQ8C/ref=asap_bc?ie=UTF8) and [three](https://www.amazon.com/Ray-Tracing-Rest-Your-Minibooks-ebook/dp/B01DN58P8C/ref=asap_bc?ie=UTF8)). Some of the code is just copy-pasted, but rewriting is on the way.
+It is inspired mostly by Peter Shirley's book series on raytracing ([one](https://www.amazon.com/Ray-Tracing-Weekend-Minibooks-Book-ebook/dp/B01B5AODD8), [two](https://www.amazon.com/Ray-Tracing-Next-Week-Minibooks-ebook/dp/B01CO7PQ8C) and [three](https://www.amazon.com/Ray-Tracing-Rest-Your-Minibooks-ebook/dp/B01DN58P8C)). Some of the code is just copy-pasted, but rewriting is on the way.
 
 ## Architecture
 
